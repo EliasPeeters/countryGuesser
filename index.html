@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Länder und Telefonnummern Trainer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+    <h1 id="main-title">Länder und Telefonnummern Trainer</h1>
+    <div id="mode-selection">
+        <h2>Wähle den Modus:</h2>
+        <button onclick="startMode('countryToCode')">Land zu Vorwahl</button>
+        <button onclick="startMode('codeToCountry')">Vorwahl zu Land</button>
+        <button onclick="startMode('countryToDomain')">Land zu Domain</button>
+        <button onclick="startMode('domainToCountry')">Domain zu Land</button>
+    </div>
+    <div id="quiz-area" class="hidden">
+        <div id="back-button" onclick="goBack()">
+            <img id="back-button-image" src="arrow-ios-back.svg">
+        </div>
+        <p id="question"></p>
+        <input type="text" id="answer" placeholder="Antwort eingeben">
+        <p id="feedback" class="hidden"></p>
+        <button id="submit-button" onclick="submitAnswer()">Antwort prüfen</button>
+        <button id="next-button" class="hidden" onclick="nextQuestion()">Nächste Frage</button>
+    </div>
+</div>
+<script src="data.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
