@@ -38,12 +38,13 @@ function nextQuestion() {
 function submitAnswer() {
     let userAnswer = document.getElementById('answer').value.trim().toLowerCase();
     const correctAnswers = data[currentMode][currentQuestion].map(answer => answer.toLowerCase());
+    const correctAnswerWithoutLowerCase = data[currentMode][currentQuestion];
 
     if (correctAnswers.includes(userAnswer)) {
         document.getElementById('feedback').innerText = 'Richtig!';
         document.getElementById('feedback').style.color = 'green';
     } else {
-        document.getElementById('feedback').innerText = `Falsch. Die richtige Antwort ist: ${correctAnswers[0]}`;
+        document.getElementById('feedback').innerText = `Falsch. Die richtige Antwort ist: ${correctAnswerWithoutLowerCase[0]}`;
         document.getElementById('feedback').style.color = 'red';
     }
 
