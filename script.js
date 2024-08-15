@@ -24,7 +24,7 @@ function nextQuestion() {
     if (currentMode.includes('ToCode') || currentMode.includes('ToDomain')) {
         questionText = `Welche ${currentMode.includes('Code') ? 'Vorwahl' : 'Domain'} gehört zu ${currentQuestion}?`;
     } else {
-        questionText = `Welches Land gehört zu ${currentQuestion}?`;
+        questionText = `Welches Land gehört zu +${currentQuestion}?`;
     }
 
     document.getElementById('question').innerText = questionText;
@@ -32,25 +32,23 @@ function nextQuestion() {
     document.getElementById('feedback').classList.add('hidden');
     document.getElementById('submit-button').classList.remove('hidden');
     document.getElementById('next-button').classList.add('hidden');
+    document.getElementById('answer').focus();  // Fokus auf das Eingabefeld setzen
 }
 
 function submitAnswer() {
-    let userAnswer = document.getElementById('answer').value.trim();
-    const correctAnswer = data[currentMode][currentQuestion];
+    let userAnswer = document.getElementById('answer').value.trim().toLowerCase();
+    const correctAnswers = data[currentMode][currentQuestion].map(answer => answer.toLowerCase());
 
-    if (currentMode === 'codeToCountry' || currentMode === 'countryToCode') {
-        userAnswer = userAnswer.replace(/^\+/, '');
-    }
-
-    if (userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
+    if (correctAnswers.includes(userAnswer)) {
         document.getElementById('feedback').innerText = 'Richtig!';
         document.getElementById('feedback').style.color = 'green';
     } else {
-        document.getElementById('feedback').innerText = `Falsch. Die richtige Antwort ist: ${correctAnswer}`;
+        document.getElementById('feedback').innerText = `Falsch. Die richtige Antwort ist: ${correctAnswers[0]}`;
         document.getElementById('feedback').style.color = 'red';
     }
 
     document.getElementById('feedback').classList.remove('hidden');
     document.getElementById('submit-button').classList.add('hidden');
     document.getElementById('next-button').classList.remove('hidden');
+    document.getElementById('answer').focus();  // Fokus nach der Antwortprüfung setzen
 }
